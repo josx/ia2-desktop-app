@@ -8,6 +8,27 @@
 <br/>
 <h4 align="center">Aplicación frontend de escritorio del proyecto IA², una herramienta Open Source para la anonimización de documentos.</h4>
 
+---
+
+<p align="center" style="margin-top: 14px;">
+  <a
+    href="https://github.com/instituciones-abiertas/ia2-desktop-app/blob/main/LICENSE"
+  >
+    <img
+      src="https://img.shields.io/badge/License-GPL%20v3-blue.svg"
+      alt="License" height="20"
+    >
+  </a>
+  <a
+    href="https://github.com/instituciones-abiertas/ia2-desktop-app/blob/main/CODE_OF_CONDUCT.md"
+  >
+    <img
+      src="https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg"
+      alt="Contributor Covenant" height="20"
+    >
+  </a>
+</p>
+
 ## Stack Tecnológico
 
 - [Electron](https://www.electronjs.org/)
@@ -44,6 +65,8 @@ npm --version
 
 Instalar yarn y verificar versión
 
+> Yarn es utilizado por la mayoría de subprocesos de electron
+
 ```bash
 npm install --global yarn
 yarn --version
@@ -78,7 +101,7 @@ API_URL=/api
 
 ### Instalación
 
-`yarn install`
+`npm install`
 
 > #### No se encuentra la librería `libvips`
 >
@@ -92,6 +115,16 @@ API_URL=/api
 > Solución: instalar libvips via `apt install libvips-dev`.
 
 ### Iniciar el servidor de desarrollo
+
+Se puede utilizar cualquier de los siguientes comandos:
+
+_Utilizando `npm`_
+
+```bash
+npm run dev
+```
+
+_Utilizando `yarn`_
 
 ```bash
 yarn dev

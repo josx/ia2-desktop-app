@@ -12,18 +12,18 @@ import { useHistory } from 'react-router';
 import ShareIcon from '@material-ui/icons/Share';
 import DownloadIcon from '@material-ui/icons/GetAppSharp';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import { Api } from 'ia2-annotation-tool';
 import { selectAnonymizer, updateReset } from '../anonymizerSlice';
-import {
-  getDocToDownload,
-  getDocPublished,
-  getDocPublishedToDrive,
-} from '../../../api/anonymizationApi';
 import Loader from '../../../components/Loader/Loader';
 import useNotification from '../../notifications/Notification';
 import ErrorVisualizer from '../../../components/ErrorVisualizer/ErrorVisualizer';
 import Results from '../../../components/Result/Results';
 import routes from '../../../constants/routes.json';
 import PopUpReset from '../../../components/ErrorVisualizer/PopUpReset';
+import { getDownloadFileName } from '../../../utils';
+import { API } from '../../../constants/api';
+
+const api = Api(API);
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,8 +62,9 @@ export default function ResultStep() {
   const dispatch = useDispatch();
 
   const handleDownloadClick = () => {
+    const downloadFilename = getDownloadFileName(state.documentName);
     try {
-      getDocToDownload(state.id, state.documentName);
+      api.getDocToDownload(state.id, downloadFilename);
     } catch (error) {
       notifyError('No se pudo descargar el documento.');
       throw error;
@@ -71,27 +72,29 @@ export default function ResultStep() {
   };
 
   const handleDropboxPublishButtonClick = () => {
-    getDocPublished(state.id)
+    api
+      .getDocPublished(state.id)
       .then(() => {
         notifySuccess(
           'Se ha publicado el documento anonimizado en su cuenta de Dropbox.'
         );
         return null;
       })
-      .catch((error) => {
+      .catch(() => {
         notifyError('No se pudo publicar el documento.');
       });
   };
 
   const handleDrivePublishButtonClick = () => {
-    getDocPublishedToDrive(state.id)
+    api
+      .getDocPublishedToDrive(state.id)
       .then(() => {
         notifySuccess(
           'Se ha publicado el documento anonimizado en su cuenta de Google Drive.'
         );
         return null;
       })
-      .catch((error) => {
+      .catch(() => {
         notifyError('No se pudo publicar el documento.');
       });
   };
