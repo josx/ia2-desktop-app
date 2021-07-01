@@ -99,6 +99,13 @@ API_URL=/api
 - `SENTRY_DSN`: url del servicio de Sentry.
 - `SENTRY_RELEASE`: setea el ambiente de Sentry (`staging`, `demo`, `prod`, `qa`, etc...)
 
+#### Habilitar funcionalidad de selección múltiple de entidades
+
+> Con el propósito de agilizar el proceso de etiquetado de entidades que se encuentran repetidas en el documento, es posible habilitar la funcionalidad de selección automática. Se trata de un componente que se renderiza en el paso de Edición del documento.
+> Por defecto se encuentra deshabilitada.
+
+- `MULTIPLE_SELECTION_ENABLE`: true
+
 ### Instalación
 
 `npm install`
@@ -128,6 +135,28 @@ _Utilizando `yarn`_
 
 ```bash
 yarn dev
+```
+
+## Tests
+
+Los tests de integración utilizan una instancia activa del [servidor de IA²](https://github.com/instituciones-abiertas/ia2-server). Del mismo modo, las variables de ambiente para tests deben estar disponibles en la terminal donde se correrán los tests.
+
+Una vez configuradas las variables, exponer los valores de ambiente utilizando:
+
+```bash
+export $(cat .env | xargs)
+```
+
+Luego es posible ejecutar las pruebas utilizando:
+
+```bash
+yarn run test-e2e
+```
+
+Con hot reload
+
+```bash
+yarn run test-e2e-live
 ```
 
 ## Generación de builds y paquetes
