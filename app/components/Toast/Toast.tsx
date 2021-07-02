@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.secondary.light,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.spacing(2),
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(50),
     color: theme.palette.primary.dark,
   },
 }));
@@ -40,7 +40,7 @@ Alert.defaultProps = {
   className: '',
 };
 
-export default function Toast({ severity, message, duration }) {
+export default function Toast({ severity, message, autoHideDuration }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [state, setState] = React.useState({
@@ -54,14 +54,16 @@ export default function Toast({ severity, message, duration }) {
     setState({ ...state, open: false });
   };
 
+  const snackbarProps = {
+    open,
+    ...(autoHideDuration && { autoHideDuration }),
+    onClose: handleClose,
+    anchorOrigin: { vertical, horizontal },
+    key: vertical + horizontal,
+  };
+
   return (
-    <Snackbar
-      open={open}
-      autoHideDuration={duration}
-      onClose={handleClose}
-      anchorOrigin={{ vertical, horizontal }}
-      key={vertical + horizontal}
-    >
+    <Snackbar {...snackbarProps}>
       <Alert
         className={classes.root}
         onClose={handleClose}
@@ -75,11 +77,11 @@ export default function Toast({ severity, message, duration }) {
 Toast.propTypes = {
   severity: PropTypes.string,
   message: PropTypes.string,
-  duration: PropTypes.number,
+  autoHideDuration: PropTypes.number,
 };
 
 Toast.defaultProps = {
   severity: 'warning',
   message: '',
-  duration: 5000,
+  autoHideDuration: 5000,
 };

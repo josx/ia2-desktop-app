@@ -65,7 +65,12 @@ export default function EditionStep() {
 
   return (
     <>
-      {!state.new_act && <Toast message="Se cargo un documento existente" />}
+      {!state.new_act && (
+        <Toast
+          message="Se cargó un documento que ya ha sido procesado previamente. Hemos incluido las modificaciones manuales que fueron realizadas en esa oportunidad."
+          autoHideDuration={0}
+        />
+      )}
       <MemoEditor
         style={style}
         text={state.text}
