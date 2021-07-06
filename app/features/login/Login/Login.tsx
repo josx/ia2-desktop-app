@@ -129,7 +129,7 @@ export default function LogIn() {
             variant="h6"
             className={classes.inputLabel}
           >
-            EMAIL
+            EMAIL HOLA
           </Typography>
           <TextField
             classes={{ root: classes.inputField }}
