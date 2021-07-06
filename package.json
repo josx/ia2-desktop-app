@@ -1,7 +1,7 @@
 {
   "name": "inteligencia-artificial-x-instituciones-abiertas",
   "productName": "Inteligencia Artificial x Instituciones Abiertas",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Herramienta para la anonimización de documentos.",
   "author": {
     "name": "IA²",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-	"url": "https://github.com/josx/ia2-desktop-app.git"
+    "url": "https://github.com/josx/ia2-desktop-app.git"
   },
   "scripts": {
     "web": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
@@ -98,7 +98,9 @@
       ],
       "category": "Development"
     },
-    "publish": ["github"],
+    "publish": [
+      "github"
+    ],
     "directories": {
       "buildResources": "resources",
       "output": "release"
