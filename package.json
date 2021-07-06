@@ -8,6 +8,10 @@
     "email": "info@ia2.coop",
     "url": "https://ia2.coop/"
   },
+  "repository": {
+    "type": "git",
+	"url": "https://github.com/josx/ia2-desktop-app.git"
+  },
   "scripts": {
     "web": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "build": "concurrently \"yarn build-main\" \"yarn build-renderer --no-sandbox\"",
@@ -27,6 +31,7 @@
     "package-mac": "yarn build && electron-builder build --mac",
     "package-linux": "yarn build && electron-builder build --linux",
     "package-win": "yarn build && electron-builder build --win --x64",
+    "package-deploy": "npm install && yarn build && electron-builder --linux --publish always",
     "postinstall": "node -r @babel/register internals/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn build-dll && opencollective-postinstall",
     "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{js,jsx,json,html,css,less,scss,yml}'",
     "postlint-styles-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{css,scss}'",
@@ -93,6 +98,7 @@
       ],
       "category": "Development"
     },
+    "publish": ["github"],
     "directories": {
       "buildResources": "resources",
       "output": "release"

@@ -3,6 +3,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 import { version } from '../constants/misc';
+import { ipcRenderer } from 'electron';
 
 const Version = () => (
   <Typography
@@ -23,6 +24,7 @@ type Props = {
 };
 
 export default function App(props: Props) {
+  console.log(ipcRenderer,"--------------");
   const theme = createMuiTheme({
     palette: {
       common: {
