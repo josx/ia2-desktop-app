@@ -32,8 +32,8 @@ Version.propTypes = {
 };
 
 const DownloadDialog = () => {
-  const [open, setOpen] = useState(true);
-  const [downloaded, setDownloaded] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
   const [available, setAvailable] = useState(false);
 
   const handleClickOpen = () => {
