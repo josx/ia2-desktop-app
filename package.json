@@ -30,8 +30,8 @@
     "package-ci": "yarn postinstall && yarn build && electron-builder --publish always",
     "package-mac": "yarn build && electron-builder build --mac",
     "package-linux": "yarn build && electron-builder build --linux",
-    "package-win": "yarn build && electron-builder build --win",
-    "package-deploy": "npm install && yarn build && electron-builder --linux --win --publish always",
+    "package-win": "yarn build && electron-builder build --win --x64",
+    "package-deploy": "npm install && yarn build && electron-builder -wl --x64 --publish always",
     "postinstall": "node -r @babel/register internals/scripts/CheckNativeDep.js && electron-builder install-app-deps && yarn build-dll && opencollective-postinstall",
     "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{js,jsx,json,html,css,less,scss,yml}'",
     "postlint-styles-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.{css,scss}'",
@@ -90,9 +90,6 @@
     "win": {
       "target": [
         "nsis"
-      ],
-      "arch": [
-        "x64"
       ]
     },
     "linux": {
